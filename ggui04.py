@@ -8,11 +8,12 @@ class MyFrame(wx.Frame):
                panel.Bind(wx.EVT_MOTION, self.OnMove) # связываем панель и событие MOTION(движение мыши по панели)
                                                       # с обработчиком OnMove()
                wx.StaticText(panel, -1, "Pos:", pos=(10, 12)) # label статичный текст - "Pos:"
-               self.posCtrl = wx.TextCtrl(panel, -1, "333", pos=(40, 10)) # окно Edit - текстовое окошко
+               self.posCtrl = wx.TextCtrl(panel, -1, "333", pos=(40, 10)) # создаем атрибут - окно Edit - текстовое
+                                                                          # окошко и называем его posCtrl
 #https://www.youtube.com/watch?v=cp1ZeMisTNo&list=PLejTrt5hn2r1uzZ53GDeUElXRkRFbUmQd&index=2
                button=wx.Button(panel, label='Exit',pos=(170,10), size=(60,30)) # создали кнопку
 
- def OnMove(self, event):
+ def OnMove(self, event): # Передаем функции событие(event) в данном случае wx.EVT_MOTION
               pos = event.GetPosition()
               self.posCtrl.SetValue("%s, %s" % (pos.x, pos.y))
 
