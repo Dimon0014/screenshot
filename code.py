@@ -1,11 +1,11 @@
 import win32api, win32con, time
 import PIL.ImageOps
 from numpy import *
-x_pad = 156
-y_pad = 345
+x_pad = 0
+y_pad = 0
 
 def leftClick():
-    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0 , 0)
     time.sleep(.1)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
     print ("Click.")          #completely optional. But nice for debugging purposes.
@@ -27,7 +27,10 @@ def mousePos(cord):
 		
 def get_cords():
 	x, y = win32api.GetCursorPos()
-	x = x - x_pad
-	y = y - y_pad
+	#x = x - x_pad
+	#y = y - y_pad
 	print(x,y)
+cord=(2500, 700)
+mousePos(cord)
+leftClick()
 get_cords()
