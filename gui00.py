@@ -14,11 +14,44 @@ class MyFrame2(wx.Frame): #Создаем свой класс MyFrame2 на ос
                             pos, size, style, name) #   super(в скобках у super первым стоит потомок MyFrame2)
 
         # Attributes
-        self.panel = wx.Panel(self) # Создаем "атрибут класса" - panel
+        self.panel = wx.Panel(self) # Создаем "атрибут класса" - panel self- то что он принадлежит этому классу
+
         self.panel.SetBackgroundColour(wx.BLACK)
         self.button = wx.Button(self.panel,      # Создаем "атрибут класса" - button- кнопку
                                 label="Push Me",
                                 pos=(50, 50))
+
+        self.btnId = self.button.GetId()
+
+        # Event Handlers
+        self.Bind(wx.EVT_BUTTON, self.OnButton, self.button)
+
+  def OnButton(self, event):
+
+    print("\nFrame GetChildren:")
+    for child in self.GetChildren():
+        print("%s" % repr(child))
+    print("\nPanel FindWindowById:")
+    button = self.panel.FindWindowById(self.btnId)
+    print("%s" % repr(button))
+    print("Button ID: ", button.GetId())
+     # Change the Button's label
+    button.SetLabel("Changed Label")
+    print("\nButton GetParent:")
+    panel = button.GetParent()
+    print("%s" % repr(panel))
+    print("\nGet the Application Object:")
+    app = wx.GetApp()
+    print("%s" % repr(app))
+    print("\nGet the Frame from the App:")
+    frame = app.GetTopWindow()
+    print("%s" % repr(frame))
+
+
+
+
+
+
 if __name__ == "__main__":
  app = MyApp(False)
  app.MainLoop()
