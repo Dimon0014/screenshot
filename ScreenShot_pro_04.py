@@ -18,7 +18,7 @@ hwnd = firefox[0]
                                                           # стороны и вершины виртуального экрана.
                                                           # Виртуальный экран – это ограничительный прямоугольник
                                                           #  всех мониторов дисплея.
-
+print(repr(hwnd))
 #y = win32api.GetSystemMetrics(win32con.SM_YVIRTUALSCREEN) # получаем координату Y(начало в данном случае Y=0)
 win32gui.SetForegroundWindow(hwnd) # выводит на передний план окно
 hwndD = win32gui.GetWindowRect(hwnd)
