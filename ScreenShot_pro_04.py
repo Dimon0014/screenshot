@@ -2,15 +2,21 @@ import win32ui, win32gui, win32con, win32api
 from time import clock
 
 start1 = clock()
-toplist, winlist = [], []
+toplist, winlist = [], []                         #европейская рулетка премиум - william hill casino
 def enum_cb(hwnd, results):
     winlist.append((hwnd, win32gui.GetWindowText(hwnd)))
 win32gui.EnumWindows(enum_cb, toplist)
-
-firefox = [(hwnd, title) for hwnd, title in winlist if 'firefox' in title.lower()]
+print(winlist)
+firefox = [(hwnd, title) for hwnd, title in winlist if 'firefox' in title.lower()] # получение хендла по title
 # just grab the hwnd for first window matching firefox
-firefox = firefox[0]
+print(len(firefox))
+#if len(firefox1)==1:
+hwnd1 = firefox
+print(repr(hwnd1))
+firefox = firefox[0] # мы тут отсекли название окна
 hwnd = firefox[0]
+#else:
+   # print('нет окна firefox')
 #hwnd = win32gui.GetDesktopWindow() # получаем хандл экрана
 #width = win32api.GetSystemMetrics(win32con.SM_CXVIRTUALSCREEN) # получаем координату CX, самую дальнюю точку экрана
 #height = win32api.GetSystemMetrics(win32con.SM_CYVIRTUALSCREEN) # получаем координату CY
@@ -21,7 +27,7 @@ hwnd = firefox[0]
 print(repr(hwnd))
 #y = win32api.GetSystemMetrics(win32con.SM_YVIRTUALSCREEN) # получаем координату Y(начало в данном случае Y=0)
 win32gui.SetForegroundWindow(hwnd) # выводит на передний план окно
-hwndD = win32gui.GetWindowRect(hwnd)
+hwndD = win32gui.GetWindowRect(hwnd) #Returns the rectangle for a window in screen coordinates
 hwndDC = win32gui.GetWindowDC(hwnd) #извлекает контекст устройства (DC) по хандлу, для всего окна
 mfcDC = win32ui.CreateDCFromHandle(hwndDC) # PyCDC object
 saveDC = mfcDC.CreateCompatibleDC()# create a memory based device context
@@ -47,7 +53,7 @@ saveDC.SelectObject(saveBitMap)# обращаемся по адресу в па�
 saveDC.BitBlt((0, 0), (width, height), mfcDC, (x, y), win32con.SRCCOPY)# copy the screen into our memory device context
 
 # Можно сохранить полученный битмап в BPM огромных размеров
-saveBitMap.SaveBitmapFile(saveDC, 'screenshot.bmp')
+saveBitMap.SaveBitmapFile(saveDC, 'screenshotrul_fire.bmp')
 end1 = clock()
 
 print("Result (iterativ): выполняется за " + "\nФункция %1.10f секунд" % (end1 - start1))
