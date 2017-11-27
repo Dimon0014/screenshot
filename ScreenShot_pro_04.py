@@ -2,7 +2,7 @@ import win32ui, win32gui, win32con, win32api
 from time import clock
 
 start1 = clock()
-toplist, winlist = [], []                         #европейская рулетка премиум - william hill casino
+toplist, winlist = [], []   #пустые списки куда будут запихиваться хандлы окон                      #европейская рулетка премиум - william hill casino
 def enum_cb(hwnd, results):
     winlist.append((hwnd, win32gui.GetWindowText(hwnd)))
 win32gui.EnumWindows(enum_cb, toplist)
@@ -28,6 +28,7 @@ print(repr(hwnd))
 #y = win32api.GetSystemMetrics(win32con.SM_YVIRTUALSCREEN) # получаем координату Y(начало в данном случае Y=0)
 win32gui.SetForegroundWindow(hwnd) # выводит на передний план окно
 hwndD = win32gui.GetWindowRect(hwnd) #Returns the rectangle for a window in screen coordinates
+
 hwndDC = win32gui.GetWindowDC(hwnd) #извлекает контекст устройства (DC) по хандлу, для всего окна
 mfcDC = win32ui.CreateDCFromHandle(hwndDC) # PyCDC object
 saveDC = mfcDC.CreateCompatibleDC()# create a memory based device context

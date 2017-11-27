@@ -1,6 +1,6 @@
 import wx
 import time
-
+import json
 
 class OtherFrame(wx.Frame):
     """"""
@@ -8,7 +8,7 @@ class OtherFrame(wx.Frame):
     # ----------------------------------------------------------------------
     def __init__(self):
         """Constructor"""
-        wx.Frame.__init__(self, None, wx.ID_ANY, "Окно сканирования", size=wx.Size(600, 400))
+        wx.Frame.__init__(self, None, wx.ID_ANY, "Окно сканирования коордионат", size=wx.Size(600, 400))
         self.panel = wx.Panel(self)
         # Собственно меняющийся текст подсказка
         msg = "Кликните на кнопке запуска"
@@ -56,9 +56,11 @@ class OtherFrame(wx.Frame):
                      self.instructions.SetLabel(msg2)
                 #msg3 = "Кликните на кнопке запуска снова"
                 #self.instructions.SetLabel(msg3)
-                
+                if self.i == len(self.coord_hlp):
+                    print(self.coord)
+                    with open('xy_coord.txt', 'w') as jsonfile: json.dump(self.coord, jsonfile)
                 break
-                time.sleep(0.01)
+               
                 
     # ----------------------------------------------------------------------
     def Run_loop(self, event):
@@ -95,12 +97,12 @@ class MainPanel(wx.Panel):
         # Publisher().subscribe(self.showFrame, ("show.mainframe"))
         
         self.pubsubText = wx.TextCtrl(self, value="")
-        hideBtn = wx.Button(self, label="Окно сканирования")
-        hideBtn.Bind(wx.EVT_BUTTON, self.hideFrame)
+        xyBtn = wx.Button(self, label="Окно сканирования(x,y)")
+        xyBtn.Bind(wx.EVT_BUTTON, self.hideFrame)
         
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer.Add(self.pubsubText, 0, wx.ALL | wx.CENTER, 5)
-        sizer.Add(hideBtn, 0, wx.ALL | wx.CENTER, 5)
+        sizer.Add(xyBtn, 0, wx.ALL | wx.CENTER, 5)
         self.SetSizer(sizer)
     
     # ----------------------------------------------------------------------
