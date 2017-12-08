@@ -28,7 +28,9 @@ print(repr(hwnd))
 #y = win32api.GetSystemMetrics(win32con.SM_YVIRTUALSCREEN) # получаем координату Y(начало в данном случае Y=0)
 win32gui.SetForegroundWindow(hwnd) # выводит на передний план окно
 hwndD = win32gui.GetWindowRect(hwnd) #Returns the rectangle for a window in screen coordinates
-
+place=win32gui.GetWindowPlacement(hwnd)
+print('place',place)
+#win32gui.SetWindowPlacement(hwnd,(0, 1, (-1, -1), (-1, -1), (1922, 0, 2720, 474)))
 hwndDC = win32gui.GetWindowDC(hwnd) #извлекает контекст устройства (DC) по хандлу, для всего окна
 mfcDC = win32ui.CreateDCFromHandle(hwndDC) # PyCDC object
 saveDC = mfcDC.CreateCompatibleDC()# create a memory based device context

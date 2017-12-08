@@ -1,4 +1,4 @@
-# попиксельное сравнение
+# попиксельное сравнение - функция
 import pyscreenshot as ImageGrab
 import os
 from time import clock, sleep

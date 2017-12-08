@@ -1,3 +1,4 @@
+# сравнение картинок в процентах
 import sys
 from functools import reduce
 

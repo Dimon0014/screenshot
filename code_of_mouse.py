@@ -1,3 +1,4 @@
+# Функции програмного  управления мышью
 import win32api, win32con, time
 import PIL.ImageOps
 from numpy import *

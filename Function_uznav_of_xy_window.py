@@ -63,7 +63,6 @@ class MyFrame(wx.Frame):
 	 print('len my_window',len(my_window))
 	 hwnd1 = my_window
 	 print('repr',repr(hwnd1))
-	 print('repr', repr(hwnd1))
 	 
 	 my_window = my_window[0]  # мы тут отсекли название(вернее хандл по названию) окна из кучи всех названий
 	 hwnd = my_window[0] # мы тут отсекли название (вернее хандл по названию)окна из кучи всех названий

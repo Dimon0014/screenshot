@@ -28,9 +28,9 @@ class MyFrame(wx.Frame):
         "Propagates")                                 # передается переменной ID_BUTTON1
         self.btn2 = wx.Button(self.panel, ID_BUTTON2,
         "Doesn't Propagate")
-        sizer = wx.BoxSizer(wx.HORIZONTAL)
-        sizer.Add(self.btn1, 0, wx.ALL, 10)
-        sizer.Add(self.btn2, 0, wx.ALL, 10)
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        sizer.Add(self.btn1, 0,wx.ALIGN_RIGHT, 10)
+        sizer.Add(self.btn2, 0, wx.ALIGN_RIGHT, 10)
         self.panel.SetSizer(sizer)
         self.Bind(wx.EVT_BUTTON, self.OnButtonFrame)
     def OnButtonFrame(self, event):

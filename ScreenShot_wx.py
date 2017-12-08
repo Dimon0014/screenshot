@@ -1,3 +1,5 @@
+# snapshot и сравнивает с картинкой из файла
+
 import sys
 import wx
 from time import clock
